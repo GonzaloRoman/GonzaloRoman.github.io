@@ -111,9 +111,14 @@ p { margin: 0; }
 
 /* hero */
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 40px 56px; align-items: center; }
-.hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; margin: 14px 0 18px; }
+.hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; margin: 0 0 12px; }
+.role { font-family: var(--font-mono); font-size: clamp(1.05rem, 2.8vw, 1.4rem); color: var(--accent); min-height: 1.8em; margin: 0 0 18px; display: flex; align-items: center; }
+.caret { display: inline-block; width: 2px; height: 1.2em; background: var(--accent); margin-left: 3px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .hero .lead { font-size: clamp(1.1rem, 2.4vw, 1.4rem); line-height: 1.45; max-width: 34ch; font-weight: 500; }
-.portrait { display: block; width: 112px; height: 112px; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); background: #fff; margin-bottom: 22px; }
+.portrait { display: block; width: 132px; height: 132px; object-fit: cover; object-position: center 20%; border-radius: 50%; border: 2px solid var(--accent); background: #fff; margin-bottom: 24px; }
 .hero .sub { color: var(--muted); max-width: 56ch; margin-top: 16px; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px; font-size: 0.92rem; color: var(--muted); align-items: center; }
@@ -194,9 +199,9 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
     <section class="view" id="v-about">
       <div class="hero">
         <div>
-          <img class="portrait" src="assets/foto.png" alt="Gonzalo Román Palazón" width="112" height="112">
-          <p class="eyebrow"><span class="es">Analista de datos · Programador</span><span class="en">Data analyst · Developer</span></p>
+          <img class="portrait" src="assets/foto.png" alt="Gonzalo Román Palazón" width="132" height="132">
           <h1>Gonzalo Román Palazón</h1>
+          <p class="role"><span class="sr es">Analista de datos, programador y automatizaciones</span><span class="sr en">Data analyst, developer and automation</span><span id="role-text" aria-hidden="true">Analista de datos</span><span class="caret" aria-hidden="true"></span></p>
           <p class="lead es">Convierto datos en información fiable y procesos manuales en flujos automáticos.</p>
           <p class="lead en">Turning raw data into reliable insight and manual processes into automated flows.</p>
           <p class="sub es">Trabajo con Python, SQL y Power BI en una gran corporación (Dragados Offshore) y vengo de una pyme (DSA Grupo), así que sé adaptar cada solución al tamaño y la cultura del equipo.</p>
@@ -438,12 +443,39 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
   window.addEventListener('hashchange', route);
   route();
 
+  var roles = { es: ['Analista de datos', 'Programador', 'Automatizaciones'], en: ['Data analyst', 'Developer', 'Automation'] };
+  var roleEl = document.getElementById('role-text');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var roleIdx = 0, rolePos = 0, roleDel = true, roleTimer = null;
+  function roleTick() {
+    var list = roles[app.getAttribute('data-lang')] || roles.es;
+    var word = list[roleIdx % list.length];
+    if (reduceMotion) { roleEl.textContent = word; roleIdx++; roleTimer = setTimeout(roleTick, 2500); return; }
+    if (!roleDel) {
+      rolePos++; roleEl.textContent = word.slice(0, rolePos);
+      if (rolePos >= word.length) { roleDel = true; roleTimer = setTimeout(roleTick, 1700); return; }
+      roleTimer = setTimeout(roleTick, 75);
+    } else {
+      rolePos--; roleEl.textContent = word.slice(0, Math.max(rolePos, 0));
+      if (rolePos <= 0) { roleDel = false; roleIdx++; roleTimer = setTimeout(roleTick, 350); return; }
+      roleTimer = setTimeout(roleTick, 38);
+    }
+  }
+  function restartRole() {
+    clearTimeout(roleTimer);
+    var list = roles[app.getAttribute('data-lang')] || roles.es;
+    roleIdx = 0; rolePos = list[0].length; roleDel = true;
+    roleEl.textContent = list[0];
+    roleTimer = setTimeout(roleTick, 1800);
+  }
+
   function setLang(l, save) {
     app.setAttribute('data-lang', l);
     document.documentElement.setAttribute('lang', l);
     document.getElementById('lang-es').setAttribute('aria-pressed', String(l === 'es'));
     document.getElementById('lang-en').setAttribute('aria-pressed', String(l === 'en'));
     if (save) { try { localStorage.setItem('gr-lang', l); } catch (e) {} }
+    restartRole();
   }
   var initial = 'es';
   try { var s = localStorage.getItem('gr-lang'); if (s === 'es' || s === 'en') initial = s; else if (navigator.language && navigator.language.slice(0, 2) !== 'es') initial = 'en'; } catch (e) {}
