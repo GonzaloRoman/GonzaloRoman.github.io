@@ -113,6 +113,7 @@ p { margin: 0; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 40px 56px; align-items: center; }
 .hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; margin: 14px 0 18px; }
 .hero .lead { font-size: clamp(1.1rem, 2.4vw, 1.4rem); line-height: 1.45; max-width: 34ch; font-weight: 500; }
+.portrait { display: block; width: 112px; height: 112px; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); background: #fff; margin-bottom: 22px; }
 .hero .sub { color: var(--muted); max-width: 56ch; margin-top: 16px; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px; font-size: 0.92rem; color: var(--muted); align-items: center; }
@@ -193,6 +194,7 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
     <section class="view" id="v-about">
       <div class="hero">
         <div>
+          <img class="portrait" src="assets/foto.png" alt="Gonzalo Román Palazón" width="112" height="112">
           <p class="eyebrow"><span class="es">Analista de datos · Programador</span><span class="en">Data analyst · Developer</span></p>
           <h1>Gonzalo Román Palazón</h1>
           <p class="lead es">Convierto datos en información fiable y procesos manuales en flujos automáticos.</p>
