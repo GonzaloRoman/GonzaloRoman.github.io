@@ -142,6 +142,9 @@ p { margin: 0; }
 .stat .ph { display: none; justify-self: start; }
 .stat.empty .ph { display: inline-block; }
 
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.group { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.group h3 { font-size: 0.8rem; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; color: var(--muted); }
 /* section tiles on home */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
 .tile { display: grid; gap: 8px; align-content: start; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-decoration: none; min-width: 0; }
@@ -270,13 +273,17 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
       </div>
 
       <div class="block">
-        <h2><span class="es">En cifras</span><span class="en">By the numbers</span></h2>
-        <!-- Para rellenar una cifra, escribe el número en data-value y quita la clase "empty". -->
-        <div class="stats">
-          <div class="stat empty"><span class="num" data-value="" data-suffix="%">—</span><span class="label es">menos tiempo para procesar facturas</span><span class="label en">less time to process invoices</span><span class="ph"><span class="es">añade tu cifra</span><span class="en">add your figure</span></span></div>
-          <div class="stat empty"><span class="num" data-value="" data-suffix="">—</span><span class="label es">departamentos que usan la app de tickets</span><span class="label en">departments using the ticket app</span><span class="ph"><span class="es">añade tu cifra</span><span class="en">add your figure</span></span></div>
-          <div class="stat empty"><span class="num" data-value="" data-suffix="">—</span><span class="label es">fuentes de datos integradas en mis ETL</span><span class="label en">data sources integrated in my ETL</span><span class="ph"><span class="es">añade tu cifra</span><span class="en">add your figure</span></span></div>
-          <div class="stat empty"><span class="num" data-value="" data-suffix=" h">—</span><span class="label es">a la semana de trabajo manual eliminadas</span><span class="label en">a week of manual work removed</span><span class="ph"><span class="es">añade tu cifra</span><span class="en">add your figure</span></span></div>
+        <h2><span class="es">Lo que he construido</span><span class="en">What I have built</span></h2>
+        <div class="cols">
+          <div class="group"><h3>DASHBOARDS</h3><div class="chips">
+            <span class="chip"><span class="es">Control de horas</span><span class="en">Time tracking</span></span><span class="chip"><span class="es">Flujo de caja</span><span class="en">Cash flow</span></span><span class="chip"><span class="es">Estado de la documentación</span><span class="en">Documentation status</span></span><span class="chip"><span class="es">KPIs de feedback del cliente</span><span class="en">Client feedback KPIs</span></span><span class="chip"><span class="es">Gestión del trabajo</span><span class="en">Work management</span></span><span class="chip"><span class="es">Registro de siniestros</span><span class="en">Incident records</span></span><span class="chip"><span class="es">Impactos</span><span class="en">Impacts</span></span>
+          </div></div>
+          <div class="group"><h3><span class="es">SCRIPTS EN PYTHON</span><span class="en">PYTHON SCRIPTS</span></h3><div class="chips">
+            <span class="chip"><span class="es">Reclamaciones automáticas a clientes</span><span class="en">Automatic client claims</span></span><span class="chip"><span class="es">Conexiones a bases de datos</span><span class="en">Database connections</span></span><span class="chip"><span class="es">Aplicaciones para clientes</span><span class="en">Client applications</span></span>
+          </div></div>
+          <div class="group"><h3>POWER AUTOMATE</h3><div class="chips">
+            <span class="chip"><span class="es">Correos automáticos</span><span class="en">Automatic emails</span></span><span class="chip"><span class="es">Subida de archivos</span><span class="en">File uploads</span></span><span class="chip"><span class="es">Extracción a bases de datos</span><span class="en">Database extractions</span></span><span class="chip"><span class="es">Actualización de bases de datos</span><span class="en">Database updates</span></span><span class="chip"><span class="es">Gestión de tareas</span><span class="en">Task management</span></span>
+          </div></div>
         </div>
       </div>
 
@@ -358,32 +365,32 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
         <article class="card flip" data-state="after">
           <header><h2><span class="es">Facturas con IA</span><span class="en">AI-powered invoices</span></h2><span class="meta">DSA Grupo · 2024 — 2025</span></header>
           <div class="seg" role="group" aria-label="Manual / Automático"><button type="button" data-state="before" aria-pressed="false">Manual</button><button type="button" data-state="after" aria-pressed="true"><span class="es">Automático</span><span class="en">Automated</span></button></div>
-          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Cada factura se revisaba y registraba a mano, con mucho tiempo administrativo.</p><p class="en">Each invoice was checked and logged by hand, taking a lot of administrative time.</p></div>
-          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Un flujo basado en IA gestiona las facturas y reduce los tiempos de procesamiento de forma drástica.</p><p class="en">An AI-based flow handles the invoices and cuts processing times dramatically.</p><div class="res"><span class="ph"><span class="es">añade: de X a Y</span><span class="en">add: from X to Y</span></span></div></div>
+          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Dar de alta a mano las facturas de unos 30-40 clientes llevaba unas 10 horas a la semana.</p><p class="en">Entering the invoices of some 30-40 clients by hand took about 10 hours a week.</p></div>
+          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Un flujo automático da de alta las facturas, sin intervención manual.</p><p class="en">An automated flow registers the invoices with no manual work.</p><div class="res"><span class="chip">≈ 10 h / <span class="es">semana ahorradas</span><span class="en">week saved</span></span></div></div>
           <div class="chips"><span class="chip">Python</span><span class="chip">IA / AI</span><span class="chip">APIs</span></div>
         </article>
 
         <article class="card flip" data-state="after">
           <header><h2><span class="es">Gestión de tickets</span><span class="en">Ticket management</span></h2><span class="meta">DSA Grupo · 2024 — 2025</span></header>
           <div class="seg" role="group" aria-label="Manual / Automático"><button type="button" data-state="before" aria-pressed="false">Manual</button><button type="button" data-state="after" aria-pressed="true"><span class="es">Automático</span><span class="en">Automated</span></button></div>
-          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Las incidencias entre departamentos no tenían un flujo común ni trazabilidad.</p><p class="en">Issues between departments had no shared flow and no traceability.</p></div>
-          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Una aplicación diseñada y desplegada con metodologías ágiles coordina procesos y departamentos, y deja trazabilidad de cada incidencia.</p><p class="en">An app designed and deployed with agile methods coordinates processes and departments, and keeps every issue traceable.</p><div class="res"><span class="ph"><span class="es">añade: nº de departamentos o usuarios</span><span class="en">add: number of departments or users</span></span></div></div>
-          <div class="chips"><span class="chip"><span class="es">Metodologías ágiles</span><span class="en">Agile</span></span><span class="ph"><span class="es">añade: tecnología</span><span class="en">add: technology</span></span></div>
+          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Todo se gestionaba por correo: mensajes que no se respondían a tiempo o se perdían.</p><p class="en">Everything ran through email: messages that were not answered in time or got lost.</p></div>
+          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Una base de datos en Dataverse con flujos automáticos que envían mensajes según el departamento, y una app en Power Apps donde se recoge cada petición.</p><p class="en">A Dataverse database with automated flows that send messages by department, and a Power Apps app where each request is recorded.</p></div>
+          <div class="chips"><span class="chip">Power Apps</span><span class="chip">Dataverse</span><span class="chip">Power Automate</span><span class="chip"><span class="es">Metodologías ágiles</span><span class="en">Agile</span></span></div>
         </article>
 
         <article class="card flip" data-state="after">
           <header><h2><span class="es">Scripts en Python con APIs</span><span class="en">Python scripts with APIs</span></h2><span class="meta">DSA Grupo · 2024 — 2025</span></header>
           <div class="seg" role="group" aria-label="Manual / Automático"><button type="button" data-state="before" aria-pressed="false">Manual</button><button type="button" data-state="after" aria-pressed="true"><span class="es">Automático</span><span class="en">Automated</span></button></div>
-          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">El control de tareas, los correos y la comunicación interna se hacían a mano.</p><p class="en">Task tracking, emails and internal communication were done by hand.</p></div>
-          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Programas conectados a APIs controlan las tareas, envían correos automáticos y mueven la comunicación interna.</p><p class="en">Programs connected to APIs track tasks, send automatic emails and drive internal communication.</p><div class="res"><span class="ph"><span class="es">añade: horas por semana ahorradas</span><span class="en">add: hours saved per week</span></span></div></div>
+          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Tareas repetitivas, como reclamar a los clientes, se hacían a mano.</p><p class="en">Repetitive tasks, such as chasing clients, were done by hand.</p></div>
+          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Scripts en Python para automatizar tareas: reclamaciones a clientes de forma automática, conexiones a bases de datos y aplicaciones diseñadas para clientes.</p><p class="en">Python scripts that automate tasks: automatic client claims, database connections and applications designed for clients.</p></div>
           <div class="chips"><span class="chip">Python</span><span class="chip">APIs REST</span><span class="chip">JSON</span></div>
         </article>
 
         <article class="card flip" data-state="after">
           <header><h2><span class="es">Flujos con Power Automate</span><span class="en">Power Automate flows</span></h2><span class="meta">Dragados Offshore · 2025 —</span></header>
           <div class="seg" role="group" aria-label="Manual / Automático"><button type="button" data-state="before" aria-pressed="false">Manual</button><button type="button" data-state="after" aria-pressed="true"><span class="es">Automático</span><span class="en">Automated</span></button></div>
-          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Tareas operativas repetitivas que ocupaban tiempo del equipo.</p><p class="en">Repetitive operational tasks that took up the team's time.</p></div>
-          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Flujos automáticos que reducen los tiempos operativos y minimizan las tareas repetitivas.</p><p class="en">Automated flows that shorten operating times and minimize repetitive tasks.</p><div class="res"><span class="ph"><span class="es">añade: procesos automatizados</span><span class="en">add: processes automated</span></span></div></div>
+          <div class="panel before"><span class="tag"><span class="es">Antes</span><span class="en">Before</span></span><p class="es">Correos, archivos, actualizaciones de datos y tareas de gestión se hacían a mano.</p><p class="en">Emails, files, data updates and management tasks were done by hand.</p></div>
+          <div class="panel after"><span class="tag"><span class="es">Ahora</span><span class="en">Now</span></span><p class="es">Flujos de todo tipo: automatización de correos, subida automática de archivos, extracciones y actualizaciones en bases de datos, y gestión de tareas.</p><p class="en">Flows of all kinds: email automation, automatic file uploads, database extractions and updates, and task management.</p></div>
           <div class="chips"><span class="chip">Power Automate</span><span class="chip">Power Apps</span></div>
         </article>
       </div>
@@ -402,9 +409,9 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
         <article class="card">
           <header><h2><span class="es">Procesos ETL end-to-end</span><span class="en">End-to-end ETL pipelines</span></h2><span class="meta">Dragados Offshore · 2025 —</span></header>
           <dl class="facts">
-            <div><dt><span class="es">Problema</span><span class="en">Problem</span></dt><dd class="es">Datos repartidos en varias fuentes y reporting manual.</dd><dd class="en">Data spread across several sources and manual reporting.</dd></div>
-            <div><dt><span class="es">Solución</span><span class="en">Solution</span></dt><dd class="es">Procesos que extraen, transforman y cargan la información de distintas fuentes para que llegue completa y correcta.</dd><dd class="en">Processes that extract, transform and load data from different sources so it arrives complete and correct.</dd></div>
-            <div><dt><span class="es">Resultado</span><span class="en">Result</span></dt><dd><span class="ph"><span class="es">añade: nº de fuentes integradas</span><span class="en">add: number of sources integrated</span></span></dd></div>
+            <div><dt><span class="es">Problema</span><span class="en">Problem</span></dt><dd class="es">La descarga y transformación de los datos se hacía a mano: unas 8 horas semanales por proyecto.</dd><dd class="en">Downloading and transforming the data was done by hand: about 8 hours a week per project.</dd></div>
+            <div><dt><span class="es">Solución</span><span class="en">Solution</span></dt><dd class="es">Descarga de datos desde Excel, CSV y APIs, y transformación en Python y Power Query.</dd><dd class="en">Data downloaded from Excel, CSV and APIs, and transformed in Python and Power Query.</dd></div>
+            <div><dt><span class="es">Resultado</span><span class="en">Result</span></dt><dd><span class="es">Unas 8 horas semanales por proyecto que dejan de hacerse a mano.</span><span class="en">About 8 hours a week per project no longer done by hand.</span></dd></div>
           </dl>
           <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Power Query</span><span class="chip">APIs</span></div>
         </article>
@@ -413,9 +420,8 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
           <header><h2><span class="es">Dashboards en Power BI</span><span class="en">Power BI dashboards</span></h2><span class="meta">Dragados Offshore · 2025 —</span></header>
           <dl class="facts">
             <div><dt><span class="es">Problema</span><span class="en">Problem</span></dt><dd class="es">Las decisiones estratégicas se apoyaban en informes estáticos.</dd><dd class="en">Strategic decisions relied on static reports.</dd></div>
-            <div><dt><span class="es">Solución</span><span class="en">Solution</span></dt><dd class="es">Informes dinámicos y visualizaciones avanzadas que apoyan la toma de decisiones.</dd><dd class="en">Dynamic reports and advanced visualizations that support decision making.</dd></div>
-            <div><dt><span class="es">Resultado</span><span class="en">Result</span></dt><dd><span class="ph"><span class="es">añade: KPIs y áreas que lo usan</span><span class="en">add: KPIs and teams using it</span></span></dd></div>
-          </dl>
+            <div><dt><span class="es">Solución</span><span class="en">Solution</span></dt><dd class="es">Dashboards de todo tipo: control de horas, flujo de caja, estado de la documentación, KPIs de feedback del cliente para alcanzar metas mensuales, gestión del trabajo, registro de siniestros e impactos.</dd><dd class="en">Dashboards of all kinds: time tracking, cash flow, documentation status, client feedback KPIs to reach monthly goals, work management, incident records and impacts.</dd></div>
+                      </dl>
           <div class="chips"><span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">Power Query</span></div>
         </article>
 
@@ -424,8 +430,7 @@ footer a { color: var(--fg); text-underline-offset: 3px; }
           <dl class="facts">
             <div><dt><span class="es">Problema</span><span class="en">Problem</span></dt><dd class="es">La información no estaba centralizada y era difícil de analizar.</dd><dd class="en">Information was not centralized and was hard to analyze.</dd></div>
             <div><dt><span class="es">Solución</span><span class="en">Solution</span></dt><dd class="es">Diseño y construcción de la base de datos, con análisis en SQL, Power BI y Python para obtener información estratégica.</dd><dd class="en">Design and build of the database, with analysis in SQL, Power BI and Python to produce strategic insight.</dd></div>
-            <div><dt><span class="es">Resultado</span><span class="en">Result</span></dt><dd><span class="ph"><span class="es">añade: área y volumen de datos</span><span class="en">add: business area and data volume</span></span></dd></div>
-          </dl>
+                      </dl>
           <div class="chips"><span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Python</span></div>
         </article>
       </div>
